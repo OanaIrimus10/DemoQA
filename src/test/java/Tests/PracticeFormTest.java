@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.net.NoRouteToHostException;
 
 public class PracticeFormTest {
 
@@ -54,5 +55,21 @@ public class PracticeFormTest {
         WebElement pictureField=driver.findElement(By.id("uploadPicture"));
         File file = new File("src/test/resources/astrobot-richardson-stewart.jpg");
         pictureField.sendKeys(file.getAbsolutePath());
+
+        WebElement maleElement= driver.findElement(By.xpath("//label[@for='gender-radio-1']"));
+        WebElement femaleElement= driver.findElement(By.xpath("//label[@for='gender-radio-2']"));
+        WebElement otherGenderElement= driver.findElement(By.xpath("//label[@for='gender-radio-3']"));
+
+        String genderValue="Female";
+        if (maleElement.getText().equals(genderValue)) {
+            maleElement.click();
+        }
+            else if(femaleElement.getText().equals(genderValue)) {
+                femaleElement.click();
+            }
+               else {
+                   otherGenderElement.click();
+                }
+
     }
 }
